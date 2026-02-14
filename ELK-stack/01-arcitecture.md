@@ -138,14 +138,5 @@ Clustered deployments prevent single points of failure.
 
 ---
 
-## Key Takeaways
-
-- ELK uses a modular pipeline architecture
-- Elasticsearch drives storage & search performance
-- Logstash enables normalization & enrichment
-- Kibana enables analysis & visualization
-- Beats optimize log collection efficiency
-
-----
 
 
