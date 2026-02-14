@@ -57,9 +57,5 @@ Trade-offs include cost, control, and maintenance complexity.
 
 ---
 
-## Key Takeaways
 
-- Single node deployments suit labs
-- Cluster deployments suit production
-- Node roles affect scalability & reliability
 
