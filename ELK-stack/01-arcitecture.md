@@ -145,3 +145,26 @@ Clustered deployments prevent single points of failure.
 - Logstash enables normalization & enrichment
 - Kibana enables analysis & visualization
 - Beats optimize log collection efficiency
+
+----
+
+## Architecture Diagram 
+
+[ Log Sources / Data Producers ]
+(Firewall, Server, Endpoint, Cloud Logs)
+                │
+                ▼
+[ Beats / Shippers ]
+(Filebeat / Winlogbeat / Metricbeat)
+                │  (TCP 5044)
+                ▼
+[ Logstash ]
+(Parsing / Filtering / Enrichment)
+                │  (HTTP / HTTPS)
+                ▼
+[ Elasticsearch Cluster ]
+(Indexing / Storage / Search Engine)
+                │
+                ▼
+[ Kibana ]
+(Dashboards / Search / Visualization)
