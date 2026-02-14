@@ -87,7 +87,7 @@ Firewall → Syslog (UDP 514) → Logstash
 Production-grade deployments secure communications using:
 
 - TLS encryption
-- Authentication & authorization
+- Authentication & authorization 
 - Firewall restrictions
 - Node-to-node encryption
 
