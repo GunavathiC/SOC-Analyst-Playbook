@@ -24,3 +24,22 @@ Rather than maintaining scattered notes, this repository acts as a centralized r
 ✔ Practical security scenarios  
 
 ---
+### 🔹 Interview Preparation
+Curated technical questions and structured answers for:
+
+- SOC Analyst roles
+- ELK / Elastic Stack
+- Log analysis & security monitoring
+
+---
+## 🚀 Continuous Updates
+
+This repository will evolve throughout my internship as I gain deeper practical exposure and hands-on experience.
+
+---
+## ⚠️ Disclaimer
+
+This repository is intended for educational and knowledge-sharing purposes.
+Configurations and examples may be simplified for learning clarity.
+
+---
