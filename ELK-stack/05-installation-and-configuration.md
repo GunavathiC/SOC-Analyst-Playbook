@@ -64,9 +64,5 @@ Understanding failure modes is valuable for troubleshooting.
 
 ---
 
-## Key Takeaways
 
-- Installation follows dependency-driven logic
-- Configuration files control behavior
-- Most issues arise from misconfigurations
 
