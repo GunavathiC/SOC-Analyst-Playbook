@@ -95,11 +95,7 @@ Unsecured pipelines expose sensitive log data.
 
 ---
 
-## Key Takeaways
 
-- ELK relies on well-defined network ports
-- TCP is preferred for reliable log transport
-- HTTPS is recommended for secure communication
-- Networking issues directly affect pipeline stability
+
 
 
