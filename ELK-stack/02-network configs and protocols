@@ -1,1 +1,104 @@
 
+# ELK Stack Network Configurations & Protocols
+
+## Why Networking Matters
+
+ELK Stack is a distributed system where components communicate continuously.
+
+Proper networking ensures:
+
+- Reliable log ingestion
+- Stable cluster communication
+- Secure data transfer
+- Performance optimization
+
+Incorrect network configurations can break pipelines or degrade performance.
+
+---
+
+## Component Communication Paths
+
+### Beats → Logstash
+
+- Protocol → TCP
+- Default Port → 5044
+
+Beats use TCP for reliable delivery and flow control.
+
+Example:
+
+Filebeat → TCP 5044 → Logstash
+
+---
+
+### Logstash → Elasticsearch
+
+- Protocol → HTTP / HTTPS
+- Default Port → 9200
+
+Used for:
+
+- Indexing events
+- Query operations
+- Cluster interactions
+
+HTTPS is preferred in secure environments.
+
+---
+
+### Kibana → Elasticsearch
+
+- Protocol → HTTP / HTTPS
+- Default Port → 9200
+
+Kibana acts as a client querying Elasticsearch APIs.
+
+---
+
+## Common ELK Ports
+
+| Component       | Port | Purpose |
+|-----------------|------|----------|
+| Elasticsearch   | 9200 | REST API / Queries |
+| Kibana          | 5601 | Web Interface |
+| Logstash Input  | 5044 | Beats Ingestion |
+
+Knowledge of ports is critical for troubleshooting and firewall rules.
+
+---
+
+## Protocols Used in Log Pipelines
+
+ELK environments commonly use:
+
+- TCP → Reliable transport
+- UDP → Syslog ingestion
+- HTTP / HTTPS → API-based ingestion
+- Syslog → Network device logs
+
+Example:
+
+Firewall → Syslog (UDP 514) → Logstash
+
+---
+
+## Security Considerations
+
+Production-grade deployments secure communications using:
+
+- TLS encryption
+- Authentication & authorization
+- Firewall restrictions
+- Node-to-node encryption
+
+Unsecured pipelines expose sensitive log data.
+
+---
+
+## Key Takeaways
+
+- ELK relies on well-defined network ports
+- TCP is preferred for reliable log transport
+- HTTPS is recommended for secure communication
+- Networking issues directly affect pipeline stability
+
