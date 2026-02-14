@@ -58,10 +58,67 @@ Commercial SIEM:
 - Vendor-supported
 
 ---
+## Alternatives 
 
-## Key Takeaways
+1️⃣ Alternatives to Kibana (Visualization & Analysis Layer)
 
-- Tool choice depends on budget & use case
-- ELK offers flexibility
-- Commercial tools offer convenience & support
+🔷 Grafana :
+Used for:
 
+✔ Dashboards
+✔ Metrics visualization
+✔ Multi-source data support
+✔ Works with Elasticsearch
+
+Limitation:
+❌ Not a full ELK-native experience like Kibana
+
+🔷 Graylog UI
+
+Graylog provides its own interface.
+
+✔ Search & dashboards
+✔ Alerting
+✔ Built on Elasticsearch
+
+🔷 OpenSearch Dashboards
+
+If using OpenSearch (Elasticsearch fork):
+
+✔ Kibana-like interface
+✔ AWS-backed ecosystem
+---
+2️⃣ Alternatives to Logstash :
+
+🔷 Fluentd 
+Extremely popular in modern architectures.
+
+✔ Lightweight & fast
+✔ Strong Kubernetes adoption
+✔ Flexible log routing
+
+🔷 Fluent Bit 
+Optimized version of Fluentd.
+
+✔ Very low memory footprint
+✔ Edge / container environments
+
+---
+3️⃣ Alternatives to Elasticsearch (Storage & Search Engine) 
+
+🔷 OpenSearch
+
+✔ Fork of Elasticsearch
+✔ API-compatible
+✔ Strong AWS adoption
+
+🔷 Splunk 
+
+✔ Full SIEM + analytics platform
+✔ Very powerful search
+✔ Expensive
+
+🔷 ClickHouse 
+
+✔ Extremely fast analytics
+✔ Used for large-scale telemetry
