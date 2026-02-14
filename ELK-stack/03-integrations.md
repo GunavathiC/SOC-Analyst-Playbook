@@ -66,9 +66,5 @@ Normalization is essential for correlation and detection accuracy.
 
 ---
 
-## Key Takeaways
 
-- ELK must integrate diverse log sources
-- Logstash plays a critical role in normalization
-- Integrations define SOC visibility & detection power
 
