@@ -58,9 +58,9 @@ Commercial SIEM:
 - Vendor-supported
 
 ---
-## Alternatives 
+## Alternatives to other 
 
-1️⃣ Alternatives to Kibana (Visualization & Analysis Layer)
+## 1️⃣ Alternatives to Kibana (Visualization & Analysis Layer)
 
 🔷 Grafana :
 Used for:
@@ -87,10 +87,12 @@ If using OpenSearch (Elasticsearch fork):
 
 ✔ Kibana-like interface
 ✔ AWS-backed ecosystem
+
 ---
+
 2️⃣ Alternatives to Logstash :
 
-🔷 Fluentd 
+🔷 Fluentd : 
 Extremely popular in modern architectures.
 
 ✔ Lightweight & fast
@@ -104,21 +106,22 @@ Optimized version of Fluentd.
 ✔ Edge / container environments
 
 ---
+
 3️⃣ Alternatives to Elasticsearch (Storage & Search Engine) 
 
-🔷 OpenSearch
+🔷 OpenSearch : 
 
 ✔ Fork of Elasticsearch
 ✔ API-compatible
 ✔ Strong AWS adoption
 
-🔷 Splunk 
+🔷 Splunk : 
 
 ✔ Full SIEM + analytics platform
 ✔ Very powerful search
 ✔ Expensive
 
-🔷 ClickHouse 
+🔷 ClickHouse : 
 
 ✔ Extremely fast analytics
 ✔ Used for large-scale telemetry
