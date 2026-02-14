@@ -87,7 +87,7 @@ Firewall → Syslog (UDP 514) → Logstash
 Production-grade deployments secure communications using:
 
 - TLS encryption
-- Authentication & authorization 
+- Authentication & authorization
 - Firewall restrictions
 - Node-to-node encryption
 
@@ -101,4 +101,5 @@ Unsecured pipelines expose sensitive log data.
 - TCP is preferred for reliable log transport
 - HTTPS is recommended for secure communication
 - Networking issues directly affect pipeline stability
+
 
