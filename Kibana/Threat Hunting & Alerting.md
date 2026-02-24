@@ -10,24 +10,17 @@ Instead of constantly monitoring dashboards, alerts automatically notify analyst
 
 Alerts are rule-based mechanisms that continuously evaluate Elasticsearch data and trigger actions when specific conditions are met.
 
-✅ Example Detection Scenarios
-
+Example Detection Scenarios
 Failed login attempts exceed threshold
-
 CPU usage crosses critical limits
-
 Excessive log volume from a single IP address
-
-✅ Alert Configuration Components
+Alert Configuration Components
 
 Kibana does not generate alerts automatically. Analysts define:
 
 Condition → What metric or pattern to monitor
-
 Threshold → Trigger limit
-
 Time Window → Evaluation period
-
 Action → Notification or response mechanism
 
 🔹 2. How Kibana Alerts Work
@@ -42,116 +35,92 @@ Condition Satisfied?
       ↓
 Trigger Action (Notification / Response)
 🔹 3. Types of Alert Rules
-✅ Threshold Alerts
-
+ 1.Threshold Alerts
+ 
 Most commonly used alert type.
-
 Trigger Logic:
 Fires when monitored values exceed predefined limits.
 
 Examples:
 
 Log count > X
-
 Error events > X
-
 Response time > X
 
-✅ Index Threshold Alerts
+ 2. Index Threshold Alerts
 
 Evaluates Elasticsearch index metrics.
 
 Examples:
 
 Number of documents > N
-
 Average(field) > value
-
 Widely used for log volume monitoring.
 
-✅ Metric Alerts
+  3.Metric Alerts
 
 Primarily used for infrastructure & system health monitoring.
 
 Examples:
 
 CPU utilization
-
 Memory consumption
-
 Disk usage
-
-✅ Custom Query Alerts (Advanced)
-
+Custom Query Alerts (Advanced)
 Built using KQL or Lucene queries.
 
 Use Cases:
 
 Suspicious IP activity detection
-
 Event code monitoring
-
 Behavioral anomaly identification
 
 🔹 4. Understanding Thresholds
 
 Threshold = Trigger Condition
-
 Defines when an alert transitions from normal to actionable.
 
-✅ Examples
+Examples
 
 Error logs > 50 → Alert
-
 Login failures > 10 → Alert
 
-✅ Key Design Decisions
+Key Design Decisions
 
 Effective thresholds require defining:
-
 Target metric
-
 Trigger value
-
 Evaluation duration
 
 🔹 5. Alert Actions & Notifications
 
 When alert conditions are satisfied, Kibana executes Actions.
-
-✅ Supported Notification Channels
+Supported Notification Channels
 
 Depending on configuration:
 
 Email notifications
-
 Webhooks
-
 Slack / Microsoft Teams
-
 PagerDuty
-
 Index actions
-
 Server logs
 
-✅ Alert Execution Flow
+Alert Execution Flow
 Alert Triggered → Action Executed → Notification Delivered
+
 🔹 6. Discover – Log Investigation Interface
 
 Discover provides raw log exploration capabilities.
 
-✅ Primary Use Cases
+Primary Use Cases
 
 Searching logs
-
 Filtering events
-
 Incident investigation
-
 Writing detection queries
 
-✅ Example KQL Queries
+Example KQL Queries
 source.ip : "192.168.1.10"
 event.code : "4625"
 log.level : "error"
@@ -161,20 +130,17 @@ Discover acts as a SOC analyst’s primary investigation screen.
 🔹 7. Visualize & Dashboards
 
 Visualization enables security monitoring & situational awareness.
-
 Visualize → Build individual graphs
-
 Dashboard → Aggregate visual insights
-
 More logs → Better visibility → Improved detection
 
 🔹 8. KQL (Kibana Query Language)
 
 Used for filtering, detection, and alerting logic.
 
-✅ Syntax
+Syntax
 field_name : "value"
-✅ Example
+Example
 source.ip : "10.0.0.5"
 
 Meaning → Display logs from specific IP address.
@@ -184,17 +150,13 @@ Meaning → Display logs from specific IP address.
 Kibana enforces security via:
 
 User authentication
-
 Roles & privileges
-
 Space restrictions
 
-✅ Example Role Model
+Example Role Model
 
 Analyst → Read-only dashboards
-
 Admin → Full privileges
-
 SOC Intern → Restricted access
 
 Purpose → Protect sensitive log data.
@@ -203,16 +165,15 @@ Purpose → Protect sensitive log data.
 
 Pipelines define log flow architecture.
 
-✅ Common Architectures
+ Common Architectures
 Filebeat → Elasticsearch → Kibana
 Logstash → Elasticsearch → Kibana
 Beats → Logstash → Elasticsearch
-✅ Pipeline Responsibilities
+
+Pipeline Responsibilities
 
 Parsing
-
 Enrichment
-
 Forwarding
 
 🔹 11. AI & Advanced Detection Features
@@ -220,27 +181,18 @@ Forwarding
 Elastic Stack supports advanced analytics:
 
 Anomaly detection
-
 Machine Learning jobs
-
 Pattern recognition
-
 Outlier detection
-
 Used for identifying abnormal log behavior.
 
 🔹 SOC Analyst Perspective
 
 Kibana plays a vital role in:
-
 Log analysis
-
 Detection engineering
-
 Alerting workflows
-
 Threat monitoring
-
 Incident investigation
 
 Alerting significantly improves SOC efficiency by reducing manual monitoring requirements.
@@ -250,38 +202,25 @@ Alerting significantly improves SOC efficiency by reducing manual monitoring req
 Examples:
 
 Brute force detection
-
 Suspicious IP spike monitoring
-
 Error surge detection
-
 Service degradation indicators
 
 🔹 False Positives & Alert Tuning ⭐ (VERY IMPRESSIVE)
 
-Explain:
-
 Why alerts misfire
-
 Threshold optimization
-
 Noise reduction strategies
-
 This signals real-world SOC thinking.
 
 🔹 Incident Investigation Workflow
 
 Example:
-
 Alert Triggered → Open Discover → Apply Filters → Correlate Events → Determine Root Cause
 🔹 Detection Strategy
 
-Discuss detection models:
-
 Threshold-based detection
-
 Behavior-based detection
-
 Query-driven detection
 
 🔹 Kibana is not only for visualization. We can create alert rules that continuously monitor Elasticsearch indices. 
