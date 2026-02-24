@@ -5,7 +5,7 @@ Logs → Search / Filter → Visualize → Alert → Notification → Response
 
 Instead of constantly watching dashboards, alerts notify analysts when abnormal activity occurs.
 
-🔹 1. What Are Alerts in Kibana?
+🔹 1. What Are Alerts in Kibana? 
 Alerts are rules that continuously monitor Elasticsearch data and trigger actions when defined conditions are met.
 
 Example Detection Scenarios
