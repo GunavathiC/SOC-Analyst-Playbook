@@ -10,7 +10,7 @@ Instead of constantly monitoring dashboards, alerts automatically notify analyst
 
 Alerts are rule-based mechanisms that continuously evaluate Elasticsearch data and trigger actions when specific conditions are met.
 
-Example Detection Scenarios
+  Example Detection Scenarios
 
 Failed login attempts exceed threshold
 
@@ -18,9 +18,9 @@ CPU usage crosses critical limits
 
 Excessive log volume from a single IP address
 
- Alert Configuration Components
+Alert Configuration Components
 
-Kibana does not generate alerts automatically. Analysts define:
+• Kibana does not generate alerts automatically. Analysts define:
 
 Condition → What metric or pattern to monitor
 
@@ -81,11 +81,11 @@ Memory consumption
 
 Disk usage
 
- Custom Query Alerts (Advanced)
+Custom Query Alerts (Advanced)
 
 Built using KQL or Lucene queries.
 
-Use Cases:
+• Use Cases:
 
 Suspicious IP activity detection
 
@@ -99,13 +99,13 @@ Threshold = Trigger Condition
 
 Defines when an alert transitions from normal to actionable.
 
- Examples
+• Examples
 
 Error logs > 50 → Alert
 
 Login failures > 10 → Alert
 
- Key Design Decisions
+Key Design Decisions
 
 Effective thresholds require defining:
 
@@ -121,7 +121,7 @@ When alert conditions are satisfied, Kibana executes Actions.
 
 Supported Notification Channels
 
-Depending on configuration:
+• Depending on configuration:
 
 Email notifications
 
@@ -137,11 +137,12 @@ Server logs
 
 Alert Execution Flow
 Alert Triggered → Action Executed → Notification Delivered
+
 🔹 6. Discover – Log Investigation Interface
 
 Discover provides raw log exploration capabilities.
 
- Primary Use Cases
+Primary Use Cases
 
 Searching logs
 
@@ -151,7 +152,7 @@ Incident investigation
 
 Writing detection queries
 
- Example KQL Queries
+ • Example KQL Queries
 source.ip : "192.168.1.10"
 event.code : "4625"
 log.level : "error"
@@ -172,9 +173,9 @@ More logs → Better visibility → Improved detection
 
 Used for filtering, detection, and alerting logic.
 
-Syntax
+• Syntax
 field_name : "value"
-Example
+• Example
 source.ip : "10.0.0.5"
 
 Meaning → Display logs from specific IP address.
@@ -204,9 +205,11 @@ Purpose → Protect sensitive log data.
 Pipelines define log flow architecture.
 
 #Common Architectures
+
 Filebeat → Elasticsearch → Kibana
 Logstash → Elasticsearch → Kibana
 Beats → Logstash → Elasticsearch
+
 # Pipeline Responsibilities
 
 Parsing
@@ -246,10 +249,9 @@ Incident investigation
 Alerting significantly improves SOC efficiency by reducing manual monitoring requirements.
 
 
-
 🔹 Alert Use Cases in SOC
 
-Examples:
+• Examples:
 
 Brute force detection
 
