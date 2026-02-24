@@ -1,144 +1,185 @@
-Kibana is NOT just dashboards & graphs.
+🔹 Kibana is NOT Just Dashboards & Graphs
 
-A real SOC workflow is:
+A real SOC workflow:
 Logs → Search/Filter → Visualize → Alert → Notification → Action
 
-Instead of constantly watching dashboards, you configure alerts so Kibana tells you when something abnormal happens.
-----
-# 1. What Are Alerts in Kibana?
-Alerts = Rules you define that watch your data continuously.
-Example:
-     • “If failed login attempts > 20 in 5 minutes → Trigger alert”
-     • “If CPU usage > 90% → Alert”
-     • “If too many logs from one IP → Alert”
+Instead of constantly watching dashboards, alerts notify analysts when abnormal activity occurs.
 
-Kibana does not create alerts automatically — we should define:
-    • Condition
-    • Threshold
-    • Time window
-    • Action (email / webhook / etc.)
-----
-# 2. How Kibana Alerts Work ?
+🔹 1. What Are Alerts in Kibana?
+Alerts are rules that continuously monitor data.
+
+Example Scenarios
+If failed login attempts > 20 in 5 minutes → Trigger alert
+If CPU usage > 90% → Alert
+If excessive logs from single IP → Alert
+
+Kibana does not create alerts automatically. Analysts define:
+Condition
+Threshold
+Time window
+Action (Email / Webhook / etc.)
+
+🔹 2. How Kibana Alerts Work
+
 Data (Elasticsearch Index)
         ↓
-Alert Rule Checks Condition
+Alert Rule Evaluates Condition
         ↓
 Condition True?
         ↓
 Trigger Action (Notification)
----
-# 3. Types of Alert Rules :
 
-  1.Threshold Alert
-Most common & easiest.
-Trigger when value exceeds limit.
-Example:
-     Log count > X
-     Error events > X
-     Response time > X
-
-  2.Index Threshold Alert
-Triggers based on index data.
-Example:
-     When number of documents > N
-     When avg(field) > value
-Used heavily in log monitoring.
-
-  3. Metric Alerts
-Used for system monitoring.
-Example:
-     CPU usage
-     Memory usage
-     Disk usage
-
-   4.Custom Query Alerts (Powerful)
-Uses KQL / Lucene queries.
-Example:
-     Detect specific IP activity
-     Detect error codes
-     Detect suspicious behavior
-----
-# 4. What Is Threshold? 
-Threshold = Trigger limit
-
-Example:
-     If error logs > 50 → Alert
-     If login failures > 10 → Alert
-
-• We must decide: the metric , number, time duration
----
-# 5. How Does Kibana Send Notifications?
-Alerts trigger Actions.
-
-• Kibana supports integrations like:
-Email, Webhook, Slack, Microsoft Teams, PagerDuty, Index action (write alert to ES), Logs / Server logs
-
-• Actual availability depends on configuration.
-Example:
-Alert fires → Kibana executes action → Email sent.
-----
-# 6. Discover 
-Discover = Raw log exploration tool.
-
-Used for:
-  • Searching logs
-  • Filtering logs
-  • Investigating incidents
-  • Writing KQL queries
-
-Example filters:
-
-source.ip : "192.168.1.10"
-event.code : "4625"
-log.level : "error"
-
-Discover = SOC analyst’s primary investigation screen
-----
-# 7. Visualize & Dashboard
-
-Visualize → Create graphs
-Dashboard → Combine graphs
-  • More logs → More data → More graphs → Better monitoring
-----
-# 8. KQL (Kibana Query Language)
-Used for filtering & alerts.
-
-Basic syntax: field_name : "value"
-Example:      source.ip : "10.0.0.5"
-Meaning → Show logs only from this IP.
------
-# 9.Security Controls & Access Controls 
-
-Kibana security includes:
-   • User authentication
-   • Roles
-   • Privileges
-   • Space restrictions
-Example:
-   Analyst → Read-only dashboards
-   Admin → Full access
-   SOC Intern → Discover + Dashboard only
-• This prevents misuse & protects data.
------
-# 10. Pipelines 
-Pipeline = Log ingestion flow.
+🔹 3. Types of Alert Rules
+1. Threshold Alert
+Most common and simplest
+Triggers when values exceed limits.
 
 Examples:
-    Filebeat → Elasticsearch
-    Logstash → Elasticsearch
-    Beats → Logstash → Elasticsearch
+Log count > X
+Error events > X
+Response time > X
 
-They control:Parsing , Enrichment, Forwarding
----
-# 11. AI & Advanced Features 
-Kibana + Elastic Stack offers:
-    • Anomaly detection
-    • ML jobs
-    • Pattern recognition
-    • Outlier detection
-Used for detecting abnormal log behavior.
------
-Kibana is not only for visualization. We can create alert rules that continuously monitor Elasticsearch indices. 
+2. Index Threshold Alert
+Based on Elasticsearch index data.
+
+Examples:
+Number of documents > N
+Average(field) > value
+Used heavily for log monitoring.
+
+3. Metric Alerts
+Used for infrastructure monitoring.
+
+Examples:
+CPU usage
+Memory usage
+Disk utilization
+
+4. Custom Query Alerts (Powerful)
+Uses KQL / Lucene Queries.
+
+Examples:
+Detect suspicious IP activity
+Detect specific error codes
+Detect anomalous patterns
+
+🔹 4. What Is Threshold?
+Threshold = Trigger Limit
+
+Examples:
+If error logs > 50 → Alert
+If login failures > 10 → Alert
+
+Analysts must define:
+Metric
+Number
+Time duration
+
+🔹 5. Notification Mechanism
+Alerts trigger Actions.
+Supported integrations include:
+Email
+Webhook
+Slack
+Microsoft Teams
+PagerDuty
+Index Actions
+Logs / Server Logs
+
+Example:
+    Alert fires → Action executed → Email sent
+
+🔹 6. Discover
+Discover = Raw Log Exploration Tool
+
+Used for:
+Searching logs
+Filtering logs
+Incident investigation
+Writing KQL queries
+
+Example Filters
+    source.ip : "192.168.1.10"
+    event.code : "4625"
+    log.level : "error"
+
+Discover acts as a SOC analyst’s primary investigation interface.
+
+🔹 7. Visualize & Dashboard
+Visualize → Create graphs
+Dashboard → Combine graphs
+
+More logs → More data → Better monitoring visibility
+
+🔹 8. KQL (Kibana Query Language)
+Used for filtering & detection.
+
+Basic Syntax :   field_name : "value"
+Example:          source.ip : "10.0.0.5"
+Meaning → Show logs from specific IP
+
+🔹 9. Security Controls & Access Controls
+Kibana security includes:
+User authentication
+Roles
+Privileges
+Space restrictions
+
+Example:
+Analyst → Read-only access
+Admin → Full access
+SOC Intern → Limited privileges
+
+Purpose → Protect sensitive log data
+
+🔹 10. Log Ingestion Pipelines
+Pipeline = Log Flow Architecture
+
+Examples:
+Filebeat → Elasticsearch
+Logstash → Elasticsearch
+Beats → Logstash → Elasticsearch
+
+Functions:
+Parsing
+Enrichment
+Forwarding
+
+🔹 11. AI & Advanced Features
+Anomaly detection
+Machine Learning jobs
+Pattern recognition
+Outlier detection
+
+Used for behavioral & abnormality detection.
+
+🔹 Alert Use Cases in SOC
+
+Examples:
+Brute force detection
+Suspicious IP spike detection
+Error surge detection
+Service outage indicators
+
+🔹 False Positives & Alert Tuning 
+
+Explain:
+Why alerts misfire
+Need for threshold tuning
+Noise reduction strategies
+
+🔹 Incident Investigation Workflow
+
+Example:
+Alert Triggered → Open Discover → Filter logs → Correlate events → Identify root cause
+
+🔹 Detection Strategy :
+
+Threshold-based detection
+Behavior-based detection
+Query-based detection
+
+🔹 Kibana is not only for visualization. We can create alert rules that continuously monitor Elasticsearch indices. 
 Alerts are triggered based on thresholds or conditions, and actions can be configured such as 
 email or webhook notifications. Discover is used for raw log analysis using KQL filters. 
 Security controls help restrict user access. Pipelines like Filebeat/Logstash control log ingestion. 
