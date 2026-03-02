@@ -2,7 +2,7 @@
 Introduction
 
 SSH (Secure Shell) logs provide critical information about remote login attempts to servers. Monitoring SSH activity is essential for detecting brute-force attacks and unauthorized access attempts.
-
+---
 In this project, we use the Elastic Stack (Elasticsearch + Kibana + Logstash) to:
 
 Ingest SSH logs
@@ -14,7 +14,7 @@ Trigger alert rules
 Send email notifications
 
 Visualize alerts in a SOC dashboard
-
+---
 Project Overview
 
 This project demonstrates a mini SOC monitoring pipeline built using Elastic Stack.
@@ -30,7 +30,7 @@ Generates alerts
 Sends email notifications
 
 Visualizes alert activity in Kibana
-
+---
 Prerequisites
 
 Before starting, ensure:
@@ -45,7 +45,7 @@ Logstash configured for SSH log ingestion
 Sample SSH logs available
 
 Gmail SMTP configured for email alerts
-
+---
 Steps to Ingest SSH Logs into Elastic
 1. Prepare Sample SSH Logs
 
@@ -101,7 +101,7 @@ Open Kibana → Dev Tools:
 GET ssh-logs/_search
 
 Confirm documents are indexed.
-
+---
 Steps to Create Brute-Force Detection Rule
 1. Create Elasticsearch Query Rule
 
@@ -134,7 +134,7 @@ Set:
 On status changes
 
 This prevents continuous email spam.
-
+---
 Steps to Configure Email Notification
 1. Create Email Connector
 
@@ -166,7 +166,7 @@ Password: App Password
 
 Click Run Test
 Ensure test email is received.
-
+---
 Steps to Create SOC Dashboard
 1. Create Alerts Data View
 
@@ -232,7 +232,7 @@ From same source IP
 Within short time window
 
 This indicates potential brute-force attack.
-
+---
 Key Learnings
 
 Difference between .alerts-* and .kibana-alerts-*
@@ -246,7 +246,7 @@ Email connector troubleshooting
 Hidden system indices handling
 
 SOC dashboard design principles
-
+---
 Conclusion
 
 This project demonstrates how Elastic Stack can be used as a SIEM platform to:
