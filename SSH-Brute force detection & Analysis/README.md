@@ -1,46 +1,262 @@
-🔐 SOC Alerting Dashboard using Elastic Stack
-📌 Project Overview
+🔐 Detecting SSH Brute-Force Attacks Using Elastic Stack (ELK SIEM)
+Introduction
 
-This project demonstrates a Security Operations Center (SOC) monitoring pipeline built using the Elastic Stack (ELK).
+SSH (Secure Shell) logs provide critical information about remote login attempts to servers. Monitoring SSH activity is essential for detecting brute-force attacks and unauthorized access attempts.
 
-It detects SSH brute-force login attempts, generates alerts, sends email notifications, and visualizes alert activity in a SOC dashboard.
+In this project, we use the Elastic Stack (Elasticsearch + Kibana + Logstash) to:
 
-🏗 Architecture
+Ingest SSH logs
 
-Log Source → Elasticsearch → Alert Rule → Email Connector → Dashboard Visualization
+Detect multiple failed login attempts
 
-🛠 Tools Used
+Trigger alert rules
 
-Elasticsearch
+Send email notifications
 
-Kibana
+Visualize alerts in a SOC dashboard
 
-Logstash
+Project Overview
 
-Gmail SMTP (Email Connector)
+This project demonstrates a mini SOC monitoring pipeline built using Elastic Stack.
 
-Kali Linux (log generation)
+The system:
 
-🚨 Detection Logic
+Collects SSH logs
 
-Monitors SSH logs
+Detects brute-force behavior
 
-Detects multiple failed login attempts
+Generates alerts
 
-🎯 Skills Demonstrated
+Sends email notifications
 
-Threat detection engineering
+Visualizes alert activity in Kibana
 
-Alert configuration
+Prerequisites
 
-Email notification setup
+Before starting, ensure:
 
-Dashboard creation
+Elasticsearch installed and running
 
-Elastic Dev Tools usage
+Kibana installed and accessible (http://localhost:5601
+)
 
-Troubleshooting alert pipelines
+Logstash configured for SSH log ingestion
 
-Triggers alert when threshold exceeded
+Sample SSH logs available
 
-Sends email notification
+Gmail SMTP configured for email alerts
+
+Steps to Ingest SSH Logs into Elastic
+1. Prepare Sample SSH Logs
+
+Obtain sample SSH log file.
+
+Ensure logs contain:
+
+Timestamp
+
+Source IP
+
+Username
+
+Login status (success / failed)
+
+Place log file in Logstash accessible directory.
+
+2. Configure Logstash Pipeline
+
+Edit:
+
+/etc/logstash/conf.d/ssh.conf
+
+Example pipeline:
+
+input {
+  file {
+    path => "/var/log/ssh.log"
+    start_position => "beginning"
+  }
+}
+
+filter {
+  grok {
+    match => { "message" => "%{SYSLOGTIMESTAMP:timestamp} %{HOSTNAME:host} sshd.* %{GREEDYDATA:action}" }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["localhost:9200"]
+    index => "ssh-logs"
+  }
+}
+
+Restart Logstash:
+
+sudo systemctl restart logstash
+3. Verify Log Ingestion
+
+Open Kibana → Dev Tools:
+
+GET ssh-logs/_search
+
+Confirm documents are indexed.
+
+Steps to Create Brute-Force Detection Rule
+1. Create Elasticsearch Query Rule
+
+Go to:
+
+Stack Management → Rules → Create Rule
+
+Select:
+
+Elasticsearch Query Rule
+
+2. Configure Rule
+
+Index: ssh-logs
+
+Query:
+
+message: "Failed password"
+
+Condition:
+
+Trigger alert when:
+
+Count >= 5
+within 1 minute
+3. Configure Action Frequency
+
+Set:
+
+On status changes
+
+This prevents continuous email spam.
+
+Steps to Configure Email Notification
+1. Create Email Connector
+
+Go to:
+
+Stack Management → Connectors → Create Connector
+
+Select:
+
+Email
+
+2. Gmail SMTP Settings
+
+Service: Gmail
+
+Host: smtp.gmail.com
+
+Port: 465
+
+Secure: Enabled
+
+Authentication: Enabled
+
+Username: your_email@gmail.com
+
+Password: App Password
+
+3. Test Connector
+
+Click Run Test
+Ensure test email is received.
+
+Steps to Create SOC Dashboard
+1. Create Alerts Data View
+
+Go to:
+
+Stack Management → Data Views → Create Data View
+
+Index Pattern:
+
+.alerts-*
+
+Enable:
+
+ Allow hidden and system indices
+
+Save data view.
+
+2. Create Alert Trend Visualization
+
+In Lens:
+
+Data view → Alerts
+
+X-axis → @timestamp
+
+Y-axis → Count of records
+
+Time → Last 24 hours
+
+Save as:
+
+Alert Trend (24h)
+3. Create Total Alerts Metric
+
+Visualization → Metric
+
+Primary Metric → Count of records
+
+Remove breakdown fields
+
+Save as:
+
+Total Alerts (24h)
+4. Create Alerts by Rule Panel
+
+Horizontal axis → kibana.alert.rule.name
+
+Vertical axis → Count of records
+
+Chart type → Bar
+
+Save as:
+
+Alerts by Rule
+Detection Logic
+
+The rule detects:
+
+Multiple failed SSH login attempts
+
+From same source IP
+
+Within short time window
+
+This indicates potential brute-force attack.
+
+Key Learnings
+
+Difference between .alerts-* and .kibana-alerts-*
+
+Action frequency configuration
+
+Alert lifecycle (Active → Recovered)
+
+Email connector troubleshooting
+
+Hidden system indices handling
+
+SOC dashboard design principles
+
+Conclusion
+
+This project demonstrates how Elastic Stack can be used as a SIEM platform to:
+
+Monitor SSH access
+
+Detect brute-force attacks
+
+Send automated email alerts
+
+Visualize security incidents
+
+It replicates a real-world SOC alerting workflow.
